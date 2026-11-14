@@ -25,7 +25,7 @@ export function Layout() {
                     pathname.startsWith("/conductores") ? "active" : ""
                   }
                 >
-                  <Link to="/usuarios">Conductores</Link>
+                  <Link to="/conductores">Conductores</Link>
                 </li>
               )}
               <li className={pathname.startsWith("/historial") ? "active" : ""}>
@@ -47,7 +47,9 @@ export function Layout() {
           )}
         </ul>
       </nav>
+      <div className="contenedor">
       <Outlet />
+      </div>
     </main>
   );
 }
