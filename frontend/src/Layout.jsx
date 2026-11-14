@@ -1,33 +1,53 @@
-import { Outlet, Link } from "react-router";
-import "./Layout.css";
+import { Link, Outlet, useLocation, useNavigate } from "react-router";
+import { useAuth } from "./Auth";
 
-const Layout = () => {
+export function Layout() {
+  const { isAuthenticated, esAdmin, logout } = useAuth();
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
+
   return (
-    <>
-      <div>
-        <nav>
-          <h1>Logo</h1>
-          <ul>
+    <main>
+      <nav>
+        <h1>Logo</h1>
+        <ul>
+          <li className={pathname === "/" ? "active" : ""}>
+            <Link to="/">Inicio</Link>
+          </li>
+          {isAuthenticated ? (
+            <>
+              <li className={pathname.startsWith("/vehiculos") ? "active" : ""}>
+                <Link to="/vehiculos">Vehiculos</Link>
+              </li>
+              {esAdmin && (
+                <li
+                  className={
+                    pathname.startsWith("/conductores") ? "active" : ""
+                  }
+                >
+                  <Link to="/usuarios">Conductores</Link>
+                </li>
+              )}
+              <li className={pathname.startsWith("/historial") ? "active" : ""}>
+                <Link to="/historial">Historial</Link>
+              </li>
+              <button
+                onClick={() => {
+                  logout();
+                  navigate("/");
+                }}
+              >
+                Salir
+              </button>
+            </>
+          ) : (
             <li>
-              <Link to="/">Inicio</Link>
+              <Link to="/login">Ingresar</Link>
             </li>
-            <li>
-              <Link to="/vehiculos">Vehiculos</Link>
-            </li>
-            <li>
-              <Link to="/conductores">Conductores</Link>
-            </li>
-            <li>
-              <Link to="/historial">Historial</Link>
-            </li>
-          </ul>
-        </nav>
-        <main>
-          <Outlet />
-        </main>
-      </div>
-    </>
+          )}
+        </ul>
+      </nav>
+      <Outlet />
+    </main>
   );
-};
-
-export default Layout;
+}

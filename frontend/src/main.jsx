@@ -12,16 +12,18 @@ import Historial from "./Historial.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route element={<Layout />}>
-          <Route index element={<Inicio />} />
-          <Route path="login" element={<Login />} />
-          <Route path="vehiculos" element={<Vehiculos />} />
-          <Route path="conductores" element={<Conductores />} />
-          <Route path="historial" element={<Historial />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <AuthProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route element={<Layout />}>
+            <Route index element={<Inicio />} />
+            <Route path="login" element={<Login />} />
+            <Route path="vehiculos" element={<Vehiculos />} />
+            <Route path="conductores" element={<Conductores />} />
+            <Route path="historial" element={<Historial />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
   </StrictMode>,
 );
