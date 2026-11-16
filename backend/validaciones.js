@@ -39,7 +39,7 @@ export const validarVehiculo = [
 export const validarFiltrosVehiculos = [
   query("marca").isAlpha("es-ES").optional(),
   query("modelo").isAlphanumeric("es-ES").optional(),
-  query("pantente").isAlphanumeric("es-ES").optional(),
+  query("patente").isAlphanumeric("es-ES").optional(),
 ];
 
 // Validaciones para filtros de viajes
