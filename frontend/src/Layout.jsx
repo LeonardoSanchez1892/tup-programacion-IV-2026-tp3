@@ -3,7 +3,7 @@ import { useAuth } from "./Auth";
 import "./Layout.css";
 
 export function Layout() {
-  const { isAuthenticated, esAdmin, logout } = useAuth();
+  const { isAuthenticated, logout } = useAuth();
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
@@ -20,15 +20,11 @@ export function Layout() {
               <li className={pathname.startsWith("/vehiculos") ? "active" : ""}>
                 <Link to="/vehiculos">Vehiculos</Link>
               </li>
-              {esAdmin && (
-                <li
-                  className={
-                    pathname.startsWith("/conductores") ? "active" : ""
-                  }
-                >
-                  <Link to="/conductores">Conductores</Link>
-                </li>
-              )}
+              <li
+                className={pathname.startsWith("/conductores") ? "active" : ""}
+              >
+                <Link to="/conductores">Conductores</Link>
+              </li>
               <li className={pathname.startsWith("/historial") ? "active" : ""}>
                 <Link to="/historial">Historial</Link>
               </li>
@@ -49,7 +45,7 @@ export function Layout() {
         </ul>
       </nav>
       <div className="contenedor">
-      <Outlet />
+        <Outlet />
       </div>
     </main>
   );
