@@ -118,3 +118,33 @@ router.put(
     res.send({ mensaje: "Vehículo actualizado correctamente" });
   },
 );
+
+// DELETE para eliminar vehículo
+router.delete(
+  "/:id",
+  validarAutenticacion,
+  validarId,
+  verificarValidaciones,
+  async (req, res) => {
+    const id = Number(req.params.id);
+
+    try {
+      const [result] = await db.execute("DELETE FROM vehiculos WHERE id = ?", [
+        id,
+      ]);
+
+      if (result.affectedRows === 0) {
+        return res.status(404).send("Vehículo no encontrado");
+      }
+
+      res.send({ mensaje: "Vehículo eliminado correctamente" });
+    } catch (e) {
+      res
+        .status(400)
+        .send({
+          mensaje:
+            "No se puede eliminar el vehículo porque tiene viajes asociados",
+        });
+    }
+  },
+);
