@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import { conectarDB } from "./db.js";
 import authRouter, { authConfig } from "./auth.js";
+import router from "./auth.js";
 
 conectarDB();
 
@@ -21,6 +22,8 @@ app.get("/", (req, res) => {
   // Responder con string
   res.send("Hola mundo!");
 });
+
+app.use("/login", authRouter);
 
 app.listen(port, () => {
   console.log(`La aplicación esta funcionando en ${port}`);
