@@ -27,17 +27,17 @@ export function authConfig() {
 router.post(
   "/login",
   [
-    body("username").isAlphanumeric("es-ES").isLength({ max: 50 }),
+    body("email").isEmail(),
     body("password").isAlphanumeric("es-ES").isLength({ max: 50 }),
   ],
   verificarValidaciones,
   async (req, res) => {
-    const { username, password } = req.body;
+    const { email, password } = req.body;
 
     // Consultar por el usuario a la base de datos
     const [usuarios] = await db.execute(
-      "SELECT * FROM usuarios WHERE username=?",
-      [username],
+      "SELECT * FROM usuarios WHERE email=?",
+      [email],
     );
 
     if (usuarios.length === 0) {
@@ -64,7 +64,7 @@ router.post(
     // Devolver token y nombre de usuario
     res.json({
       token,
-      username: usuarios[0].username,
+      email: usuarios[0].email,
     });
   },
 );
