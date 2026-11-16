@@ -69,3 +69,28 @@ router.get(
     res.send(vehiculos[0]);
   },
 );
+
+// POST para crear vehículo
+router.post(
+  "/",
+  validarAutenticacion,
+  validarVehiculo,
+  verificarValidaciones,
+  async (req, res) => {
+    const { marca, modelo, patente, anio, capacidad_carga } = req.body;
+
+    const [result] = await db.execute(
+      "INSERT INTO vehiculos (marca, modelo, patente, anio, capacidad_carga) VALUES (?, ?, ?, ?, ?)",
+      [marca, modelo, patente, anio, capacidad_carga],
+    );
+
+    res.status(201).send({
+      id: result.insertId,
+      marca,
+      modelo,
+      patente,
+      anio,
+      capacidad_carga,
+    });
+  },
+);
