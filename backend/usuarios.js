@@ -1,11 +1,7 @@
 import express from "express";
 import { db } from "./db.js";
-import {
-  validarAutenticacion,
-  validarId,
-  verificarValidaciones,
-} from "./validaciones.js";
-import { body, param } from "express-validator";
+import { validarAutenticacion, verificarValidaciones } from "./validaciones.js";
+import { body } from "express-validator";
 import bcrypt from "bcrypt";
 
 const router = express.Router();
