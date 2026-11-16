@@ -1,6 +1,5 @@
 @url=http://localhost:3000
-@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc5NDg2MDU0MiwiZXhwIjoxNzk0ODc0OTQyfQ.2TLnoVH6YrRIt7pKiZj--uKSZJnFpE6XP7qct7HQeqM
-
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc5NDg2ODQwOSwiZXhwIjoxNzk0ODgyODA5fQ.OuoWfyq4wRax02nQOTN8QjK7fNamt5ZIlmpQP4ePPao
 
 ### Consultar vehiculos
 GET {{url}}/vehiculos

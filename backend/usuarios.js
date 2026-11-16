@@ -43,7 +43,7 @@ router.post(
       [nombre, email, hashedPassword],
     );
 
-    res.status(201).json({ id: result.insertId, nombre, email, password });
+    res.status(201).json({ id: result.insertId, nombre, email });
   },
 );
 
