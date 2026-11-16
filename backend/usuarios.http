@@ -1,0 +1,17 @@
+@url=http://localhost:3000
+
+### Consultar usuarios
+GET {{url}}/usuarios
+
+### Consultar por un usuario
+GET {{url}}/usuarios/1
+
+### Crear usuario
+POST {{url}}/usuarios
+Content-Type: application/json
+
+{
+    "nombre": "carlos",
+    "email": "carlos123@hotmail.com",
+    "password": "rom12345"
+}

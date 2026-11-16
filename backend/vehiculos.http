@@ -1,0 +1,24 @@
+@url=http://localhost:3000
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc5NDg2MDU0MiwiZXhwIjoxNzk0ODc0OTQyfQ.2TLnoVH6YrRIt7pKiZj--uKSZJnFpE6XP7qct7HQeqM
+
+
+### Consultar vehiculos
+GET {{url}}/vehiculos
+Authorization: Bearer {{token}}
+
+### Consultar por un vehiculo
+GET {{url}}/vehiculos/
+Authorization: Bearer {{token}}
+
+### Crear vehiculo
+POST {{url}}/vehiculos
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "marca": "Chevrolet",
+    "modelo": "Corsa",
+    "patente":"LMI 502",
+    "anio": "2012",
+    "capacidad_carga": "256"
+}
