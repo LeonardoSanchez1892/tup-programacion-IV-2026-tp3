@@ -1,0 +1,77 @@
+table,
+th,
+td {
+  border: 1px solid var(--border);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0 32px;
+}
+
+th,
+td {
+  padding: 8px;
+}
+
+.formulario-datos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 12px;
+  margin: 20px 0;
+  text-align: left;
+}
+
+.formulario-datos label,
+.filtros-historial label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.formulario-datos input,
+.formulario-datos select,
+.formulario-datos textarea,
+.filtros-historial select {
+  box-sizing: border-box;
+  max-width: 100%;
+  padding: 6px;
+  color: inherit;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font: inherit;
+}
+
+.acciones-formulario,
+.acciones-tabla {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.acciones-formulario {
+  grid-column: 1 / -1;
+}
+
+.filtros-historial {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 16px 0;
+}
+
+.mensaje-error {
+  color: #b42318;
+}
+
+.mensaje-exito {
+  color: #15803d;
+}
+
+.total-kilometros {
+  margin: 16px 0;
+  font-weight: 600;
+}
