@@ -11,17 +11,16 @@ export const useAuth = () => {
 
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(null);
-  const [username, setUsername] = useState(null);
-  const [esAdmin, setEsAdmin] = useState(null);
+  const [email, setEmail] = useState(null);
   const [error, setError] = useState(null);
 
-  const login = useCallback(async (username, password) => {
+  const login = useCallback(async (email, password) => {
     setError(null);
     try {
       const response = await fetch("http://localhost:3000/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({ email, password }),
       });
 
       const session = await response.json();
@@ -31,8 +30,7 @@ export const AuthProvider = ({ children }) => {
       }
 
       setToken(session.token);
-      setUsername(session.username);
-      setEsAdmin(session.esAdmin);
+      setEmail(session.email);
       return { success: true };
     } catch (err) {
       setError(err.message);
@@ -42,8 +40,7 @@ export const AuthProvider = ({ children }) => {
 
   const logout = useCallback(() => {
     setToken(null);
-    setUsername(null);
-    setEsAdmin(null);
+    setEmail(null);
     setError(null);
   }, []);
 
@@ -65,8 +62,7 @@ export const AuthProvider = ({ children }) => {
     <AuthContext.Provider
       value={{
         token,
-        username,
-        esAdmin,
+        email,
         error,
         isAuthenticated: !!token,
         login,
