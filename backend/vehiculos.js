@@ -48,3 +48,24 @@ router.get(
     res.send(vehiculos);
   },
 );
+
+// GET para entregar detalle de vehículo por ID
+router.get(
+  "/:id",
+  validarAutenticacion,
+  validarId,
+  verificarValidaciones,
+  async (req, res) => {
+    const id = Number(req.params.id);
+
+    let sql =
+      "SELECT id, marca, modelo, patente, anio, capacidad_carga FROM vehiculos WHERE id = ?";
+    const [vehiculos] = await db.execute(sql, [id]);
+
+    if (vehiculos.length === 0) {
+      return res.status(404).send("Vehículo no encontrado");
+    }
+
+    res.send(vehiculos[0]);
+  },
+);
