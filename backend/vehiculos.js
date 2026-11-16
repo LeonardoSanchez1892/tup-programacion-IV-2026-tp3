@@ -94,3 +94,27 @@ router.post(
     });
   },
 );
+
+// PUT para modificar vehículo
+router.put(
+  "/:id",
+  validarAutenticacion,
+  validarId,
+  validarVehiculo,
+  verificarValidaciones,
+  async (req, res) => {
+    const id = Number(req.params.id);
+    const { marca, modelo, patente, anio, capacidad_carga } = req.body;
+
+    const [result] = await db.execute(
+      "UPDATE vehiculos SET marca = ?, modelo = ?, patente = ?, anio = ?, capacidad_carga = ? WHERE id = ?",
+      [marca, modelo, patente, anio, capacidad_carga, id],
+    );
+
+    if (result.affectedRows === 0) {
+      return res.status(404).send("Vehículo no encontrado");
+    }
+
+    res.send({ mensaje: "Vehículo actualizado correctamente" });
+  },
+);
