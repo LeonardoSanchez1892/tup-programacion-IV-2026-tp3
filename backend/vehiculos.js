@@ -139,12 +139,12 @@ router.delete(
 
       res.send({ mensaje: "Vehículo eliminado correctamente" });
     } catch (e) {
-      res
-        .status(400)
-        .send({
-          mensaje:
-            "No se puede eliminar el vehículo porque tiene viajes asociados",
-        });
+      res.status(400).send({
+        mensaje:
+          "No se puede eliminar el vehículo porque tiene viajes asociados",
+      });
     }
   },
 );
+
+export default router;
