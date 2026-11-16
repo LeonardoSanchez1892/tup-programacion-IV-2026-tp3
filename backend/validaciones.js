@@ -85,3 +85,42 @@ export const validarViaje = [
     .withMessage("Los kilómetros deben ser un número mayor a 0"),
   body("observaciones").optional({ nullable: true }).isString(),
 ];
+
+// Validaciones para filtros de conductores
+export const validarFiltrosConductores = [
+  query("nombre").optional().isString().trim(),
+  query("apellido").optional().isString().trim(),
+  query("numero_documento").optional().isString().trim(),
+];
+
+// Validaciones para crear/editar conductores
+export const validarConductor = [
+  body("nombre")
+    .isString()
+    .notEmpty()
+    .isLength({ max: 100 })
+    .withMessage("El nombre es obligatorio"),
+  body("apellido")
+    .isString()
+    .notEmpty()
+    .isLength({ max: 100 })
+    .withMessage("El apellido es obligatorio"),
+  body("numero_documento")
+    .isString()
+    .notEmpty()
+    .isLength({ max: 20 })
+    .withMessage("El número de documento es obligatorio"),
+  body("numero_licencia")
+    .isString()
+    .notEmpty()
+    .isLength({ max: 30 })
+    .withMessage("El número de licencia es obligatorio"),
+  body("fecha_alta_licencia")
+    .isISO8601()
+    .withMessage("La fecha de alta de licencia debe ser válida (YYYY-MM-DD)"),
+  body("fecha_vencimiento_licencia")
+    .isISO8601()
+    .withMessage(
+      "La fecha de vencimiento de licencia debe ser válida (YYYY-MM-DD)",
+    ),
+];
